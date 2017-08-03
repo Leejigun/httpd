@@ -13,8 +13,6 @@ public class HttpServer {
 
     int portNumber;
 
-    RequestHandler requestHandler = new RequestHandler();
-
     public HttpServer(int portNumber) {
         this.portNumber = portNumber;
     }
@@ -24,8 +22,6 @@ public class HttpServer {
                 ServerSocket serverSocket = new ServerSocket(portNumber);
         ) {
                 Socket clientSocket = serverSocket.accept();
-
-                Request request = requestHandler.handle(clientSocket);
 
                 clientSocket.close();
         } catch (IOException e) {
