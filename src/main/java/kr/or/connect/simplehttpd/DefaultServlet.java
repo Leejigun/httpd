@@ -7,13 +7,7 @@ import java.io.OutputStream;
 
 public class DefaultServlet {
     public void service(Request request, Response response){
-        File f = null;
-
-        if("404".equals(response.getStatusCode())) {
-            f = new File("webapp/404.html");
-        }else{
-            f = new File("webapp/" + request.getRequestTarget());
-        }
+        File f = new File("webapp/" + request.getRequestTarget());
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
         int readCount = 0;

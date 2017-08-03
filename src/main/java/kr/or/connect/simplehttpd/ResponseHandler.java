@@ -21,23 +21,14 @@ public class ResponseHandler {
             OutputStream clientOut = clientSocket.getOutputStream();
 
             File f = new File("webapp/" + path);
-            if(!f.exists()){ // 파일이 존재하지 않을 경우
-                response = new Response();
-                response.setStatusCode("404");
-                response.setReasonPhrase("Not found");
-                response.addHeader("Content-Type: text/html");
-                File file = new File("webapp/404.html");
-                response.addHeader("Content-Length: " + file.length());
-            }else {
-                response = new Response();
-                response.setStatusCode("200");
-                response.setReasonPhrase("OK");
-                Path source = Paths.get(f.getAbsolutePath());
-                response.addHeader("Content-Type: " + Files.probeContentType(source));
-                response.addHeader("Server: 127.0.0.1");
+            response = new Response();
+            response.setStatusCode("200");
+            response.setReasonPhrase("OK");
+            Path source = Paths.get(f.getAbsolutePath());
+            response.addHeader("Content-Type: " + Files.probeContentType(source));
+            response.addHeader("Server: 127.0.0.1");
 
-                response.addHeader("Content-Length: " + f.length());
-            }
+            response.addHeader("Content-Length: " + f.length());
 
             StringBuffer sb = new StringBuffer();
             sb.append(response.getStatusLine());
