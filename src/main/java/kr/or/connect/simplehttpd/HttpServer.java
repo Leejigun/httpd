@@ -26,12 +26,11 @@ public class HttpServer {
                 Socket clientSocket = serverSocket.accept();
 
                 Request request = requestHandler.handle(clientSocket);
-
+                log.info("request:::::"+request);
                 clientSocket.close();
         } catch (IOException e) {
-            System.out.println("Exception caught when trying to listen on port "
+            log.info("Exception caught when trying to listen on port "
                     + portNumber + " or listening for a connection");
-            System.out.println(e.getMessage());
             log.error(e.getMessage());
         }
 
