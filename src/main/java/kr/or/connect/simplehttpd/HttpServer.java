@@ -30,8 +30,6 @@ public class HttpServer {
                 Request request = requestHandler.handle(clientSocket);
                 Response response = responseHandler.handle(request.getRequestTarget(), clientSocket);
 
-                DefaultServlet defaultServlet = new DefaultServlet();
-                defaultServlet.service(request, response);
                 clientSocket.close();
         } catch (IOException e) {
             System.out.println("Exception caught when trying to listen on port "
