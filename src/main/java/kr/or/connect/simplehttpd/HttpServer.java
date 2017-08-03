@@ -1,6 +1,5 @@
 package kr.or.connect.simplehttpd;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,12 +28,11 @@ public class HttpServer {
 
                 Request request = requestHandler.handle(clientSocket);
                 Response response = responseHandler.handle(request.getRequestTarget(), clientSocket);
-
+                log.info("response:"+response);
                 clientSocket.close();
         } catch (IOException e) {
-            System.out.println("Exception caught when trying to listen on port "
+            log.info("Exception caught when trying to listen on port "
                     + portNumber + " or listening for a connection");
-            System.out.println(e.getMessage());
             log.error(e.getMessage());
         }
 
